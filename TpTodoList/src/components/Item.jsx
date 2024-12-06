@@ -1,9 +1,9 @@
-// El componente para cada tarea(TASKS)individual, que contiene las funciones de completar , eliminar y editar 
+
 
 import { Box, Text, IconButton, Input, Button } from '@chakra-ui/react';
 import { CheckIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { saveTasks } from '../utils/LocalStorage';
-import { useState } from 'react';  // Necesitas importar useState aquí
+import { useState } from 'react';  
 
 const Item = ({ task, setTasks, tasks }) => {
   const [isEditing, setIsEditing] = useState(false);  // Controla si la tarea está en modo de edición
