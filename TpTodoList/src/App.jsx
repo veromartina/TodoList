@@ -20,7 +20,7 @@ const App = () => {
   const [filter, setFilter] = useState("all");
   const [newTask, setNewTask] = useState("");
   const [backgroundVideo, setBackgroundVideo] = useState(
-    "assets/videos/ligth.mp4"
+    "./src/assets/videos/ligth.mp4"
   ); // Estado para el video de fondo
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -29,10 +29,10 @@ const App = () => {
   const handleToggleColorMode = () => {
     toggleColorMode();
     // Cambiar el video solo cuando se hace clic en el icono, sin importar el colorMode actual
-    if (backgroundVideo === "assets/videos/ligth.mp4") {
-      setBackgroundVideo("assets/videos/dark.mp4");
+    if (backgroundVideo === "") {
+      setBackgroundVideo("./src/assets/videos/ligth.mp4");
     } else {
-      setBackgroundVideo("assets/videos/ligth.mp4");
+      setBackgroundVideo("./src/assets/videos/dark.mp4");
     }
   };
 
