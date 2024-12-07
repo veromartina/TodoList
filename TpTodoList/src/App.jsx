@@ -88,7 +88,7 @@ const App = () => {
               mb={50}
             >
               <IconButton
-                icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+                icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
                 aria-label="Toggle dark mode"
                 onClick={handleToggleColorMode} // Llamar a la función que cambia el video
                 display="flex"

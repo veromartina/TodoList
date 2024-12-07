@@ -1,4 +1,3 @@
-
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
@@ -11,4 +10,4 @@ createRoot(document.getElementById('root')).render(
     </ChakraProvider>
   </StrictMode>,
 )
-  //si lo quito deja de funcionar el modo claro/oscuro
+// si quito <ChakraProvider  theme={extendTheme}> deja de funcionar el modo claro/oscuro
