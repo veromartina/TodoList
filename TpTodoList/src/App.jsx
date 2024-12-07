@@ -19,19 +19,19 @@ const App = () => {
   const [tasks, setTasks] = useState(getTasks());
   const [filter, setFilter] = useState("all");
   const [newTask, setNewTask] = useState("");
-  const [backgroundVideo, setBackgroundVideo] = useState(
-    "./src/assets/videos/ligth.mp4"
-  ); // Estado para el video de fondo
+  const [backgroundVideo, setBackgroundVideo] = useState("./src/assets/videos/ligth.mp4"); // Estado para el video de fondo
 
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode("ligth");
 
   // Cambiar el video de fondo al hacer clic en el icono
   const handleToggleColorMode = () => {
+    toggleColorMode();
+    // Cambiar el video solo cuando se hace clic en el icono, sin importar el colorMode actual
     if (backgroundVideo === "./src/assets/videos/ligth.mp4") {
       setBackgroundVideo("./src/assets/videos/dark.mp4");
-    } else {
+    } else if (backgroundVideo === "./src/assets/videos/dark.mp4") {
       setBackgroundVideo("./src/assets/videos/ligth.mp4");
-    }
+    } 
   };
 
   // Manejo de tareas y filtro
