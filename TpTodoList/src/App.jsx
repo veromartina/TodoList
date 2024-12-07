@@ -106,7 +106,7 @@ const App = () => {
               alignItems={"center"}
             >
               <Image
-                src="./src/assets/logo.png"
+                src="./src/assets/imagenes/logo.png"
                 alt="Dan Abramov"
                 width="1oopx"
                 alignItems="center"
