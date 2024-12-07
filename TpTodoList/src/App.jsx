@@ -14,6 +14,7 @@ import TodoList from "./components/TodoList";
 import Filter from "./components/Filter"; // Importamos Filter
 import { getTasks, saveTasks } from "./utils/LocalStorage";
 import { useState } from "react";
+import logo from "./assets/imagenes/logo.png";
 
 const App = () => {
   const [tasks, setTasks] = useState(getTasks());
@@ -106,7 +107,7 @@ const App = () => {
               alignItems={"center"}
             >
               <Image
-                src="./src/assets/imagenes/logo.png"
+                src={logo}
                 alt="Dan Abramov"
                 width="1oopx"
                 alignItems="center"
