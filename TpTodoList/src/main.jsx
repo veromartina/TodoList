@@ -10,3 +10,4 @@ createRoot(document.getElementById('root')).render(
     </ChakraProvider>
   </StrictMode>,
 )
+// si quito <ChakraProvider  theme={extendTheme}> deja de funcionar el modo claro/oscuro

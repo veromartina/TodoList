@@ -14,26 +14,27 @@ import TodoList from "./components/TodoList";
 import Filter from "./components/Filter"; // Importamos Filter
 import { getTasks, saveTasks } from "./utils/LocalStorage";
 import { useState } from "react";
+import logo from "./assets/imagenes/logo.png";
+import videoLigth from "./assets/videos/ligth.mp4"
+import videoDark from "./assets/videos/dark.mp4"
 
 const App = () => {
   const [tasks, setTasks] = useState(getTasks());
   const [filter, setFilter] = useState("all");
   const [newTask, setNewTask] = useState("");
-  const [backgroundVideo, setBackgroundVideo] = useState(
-    "./src/assets/videos/ligth.mp4"
-  ); // Estado para el video de fondo
+  const [backgroundVideo, setBackgroundVideo] = useState(videoLigth); // Estado para el video de fondo
 
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode("ligth");
 
   // Cambiar el video de fondo al hacer clic en el icono
   const handleToggleColorMode = () => {
     toggleColorMode();
     // Cambiar el video solo cuando se hace clic en el icono, sin importar el colorMode actual
-    if (backgroundVideo === "") {
-      setBackgroundVideo("./src/assets/videos/ligth.mp4");
-    } else {
-      setBackgroundVideo("./src/assets/videos/dark.mp4");
-    }
+    if (backgroundVideo === videoLigth) {
+      setBackgroundVideo(videoDark);
+    } else if (backgroundVideo === videoDark ) {
+      setBackgroundVideo(videoLigth);
+    } 
   };
 
   // Manejo de tareas y filtro
@@ -90,7 +91,7 @@ const App = () => {
               mb={50}
             >
               <IconButton
-                icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+                icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
                 aria-label="Toggle dark mode"
                 onClick={handleToggleColorMode} // Llamar a la función que cambia el video
                 display="flex"
@@ -108,7 +109,7 @@ const App = () => {
               alignItems={"center"}
             >
               <Image
-                src="./src/assets/logo.png"
+                src={logo}
                 alt="Dan Abramov"
                 width="1oopx"
                 alignItems="center"
