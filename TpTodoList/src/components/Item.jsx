@@ -61,6 +61,8 @@ const Item = ({ task, setTasks, tasks }) => {
             mr={2}
             fontSize="20px"
             fontFamily="'Lobster'"
+            font-style= "normal"
+            font-weight="100"
             borderColor={"blue.500"}
             borderWidth="2px"
             backgroundColor={"blue.100"}
@@ -68,12 +70,12 @@ const Item = ({ task, setTasks, tasks }) => {
             color= "grey"
           
           />
-          <Button onClick={handleEditTask} colorScheme="teal" size="sm">
+          <Button onClick={handleEditTask}  backgroundColor= {"green.500"} size="sm" color={"black"}>
             Modificar
           </Button>
           <Button
             onClick={() => setIsEditing(false)}  // Cancelar la edición
-            colorScheme="red"
+            backgroundColor= {"red.500"} color={"black"}
             size="sm"
             ml={2}
           >
@@ -89,7 +91,7 @@ const Item = ({ task, setTasks, tasks }) => {
             <IconButton
               icon={<CheckIcon />}
               onClick={handleCompleteTask}
-              backgroundColor= "green.500"
+              backgroundColor= {"green.500"}
               mr={2}
             />
             <IconButton
@@ -116,14 +118,14 @@ const Item = ({ task, setTasks, tasks }) => {
         isCentered
       >
         <AlertDialogOverlay />
-        <AlertDialogContent backgroundColor={"blue.100"} fontFamily="'Lobster'" >
+        <AlertDialogContent color= {"black"} backgroundColor={"blue.100"} fontFamily="'Lobster'" >
           <AlertDialogHeader>¿Esta seguro de eliminar esta tarea?</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody>
             Esta acción eliminará definitivamente la tarea de la lista.
           </AlertDialogBody>
           <AlertDialogFooter>
-            <Button colorScheme={"teal"}  color={"black"}
+            <Button backgroundColor={"green.500"}  color={"black"}
              ref={cancelRef} onClick={onClose}>
               Cancelar
             </Button>
