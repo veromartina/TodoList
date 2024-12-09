@@ -4,6 +4,7 @@ const Filter = ({ filter, handleFilterChange }) => {
   return (
     <div>
       <Select
+        name="filter"
         value={filter}
         onChange={handleFilterChange}
         mb={4}
@@ -13,7 +14,7 @@ const Filter = ({ filter, handleFilterChange }) => {
         fontSize="20px"
         fontFamily="'Lobster'"
         backgroundColor={"blue.100"}
-        textColor={"black"}
+        textColor={"grey"}
                
       >
         <option value="all">Todas las tareas</option>

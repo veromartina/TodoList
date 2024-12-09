@@ -1,13 +1,15 @@
-
-
-import { Box, Text, IconButton, Input, Button } from '@chakra-ui/react';
+import { Box, Text, IconButton, Input, Button, useDisclosure, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton } from '@chakra-ui/react';
 import { CheckIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { saveTasks } from '../utils/LocalStorage';
-import { useState } from 'react';  
+import { useState, useRef } from 'react';
 
 const Item = ({ task, setTasks, tasks }) => {
   const [isEditing, setIsEditing] = useState(false);  // Controla si la tarea está en modo de edición
   const [editedText, setEditedText] = useState(task.text);  // Guarda el nuevo texto de la tarea
+  
+  // AlertDialog Hook
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
 
   const handleCompleteTask = () => {
     const updatedTasks = tasks.map((t) =>
@@ -36,21 +38,22 @@ const Item = ({ task, setTasks, tasks }) => {
 
   return (
     <Box
-    fontSize="20px"
-    fontFamily="'Lobster'"
-    borderColor={"blue.500"}
-    borderWidth="2px"
-    
+      fontSize="20px"
+      fontFamily="'Lobster'"
+      borderColor={"blue.500"}
+      borderWidth="2px"
       p={4}
       borderRadius="md"
       display="flex"
+      flexDirection={{ base: 'column', sm: 'row' }}  // En pantallas pequeñas, columna; en pantallas grandes, fila
       justifyContent="space-between"
       alignItems="center"
       width="100%"
+      overflow="hidden"  // Asegura que no haya desbordamiento
       textDecoration={task.completed ? 'line-through' : 'none'}
     >
       {isEditing ? (
-        <Box  mt={30} display="flex" alignItems="center" width="100%">
+        <Box mt={30} display="flex" alignItems="center" width="100%">
           <Input
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}  // Actualiza el texto mientras se escribe
@@ -61,9 +64,12 @@ const Item = ({ task, setTasks, tasks }) => {
             borderColor={"blue.500"}
             borderWidth="2px"
             backgroundColor={"blue.100"}
+            maxWidth="100%" 
+            color= "grey"
+          
           />
           <Button onClick={handleEditTask} colorScheme="teal" size="sm">
-           Modificar
+            Modificar
           </Button>
           <Button
             onClick={() => setIsEditing(false)}  // Cancelar la edición
@@ -76,32 +82,68 @@ const Item = ({ task, setTasks, tasks }) => {
         </Box>
       ) : (
         <>
-          <Text flex="1" ml={4}>
+          <Text color= "grey" flex="1" ml={4}>
             {task.text}
           </Text>
           <div>
             <IconButton
               icon={<CheckIcon />}
               onClick={handleCompleteTask}
-              colorScheme="teal"
+              backgroundColor= "green.500"
               mr={2}
             />
             <IconButton
               icon={<DeleteIcon />}
-              onClick={handleDeleteTask}
-              colorScheme="red"
+              onClick={onOpen}  // Abre el AlertDialog de confirmación
+              backgroundColor="red.500"
               mr={2}
             />
             <IconButton
               icon={<EditIcon />}
               onClick={() => setIsEditing(true)}  // Activa el modo de edición
-              colorScheme="blue"
+              backgroundColor={"blue.500"}
             />
           </div>
         </>
       )}
+
+      {/* Aquí empieza el AlertDialog */}
+      <AlertDialog
+        motionPreset="slideInBottom"
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+        isOpen={isOpen}
+        isCentered
+      >
+        <AlertDialogOverlay />
+        <AlertDialogContent backgroundColor={"blue.100"} fontFamily="'Lobster'" >
+          <AlertDialogHeader>¿Esta seguro de eliminar esta tarea?</AlertDialogHeader>
+          <AlertDialogCloseButton />
+          <AlertDialogBody>
+            Esta acción eliminará definitivamente la tarea de la lista.
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button colorScheme={"teal"}  color={"black"}
+             ref={cancelRef} onClick={onClose}>
+              Cancelar
+            </Button>
+            <Button
+            color={"black"}
+              backgroundColor= {"red.500"}
+              ml={3}
+              onClick={() => {
+                handleDeleteTask();  // Eliminar la tarea
+                onClose();  // Cerrar el dialogo
+              }}
+            >
+              Eliminar
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Box>
   );
 };
 
 export default Item;
+
