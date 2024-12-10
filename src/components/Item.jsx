@@ -51,7 +51,6 @@ const Item = ({ task, setTasks, tasks }) => {
       width="100%"
       overflow="hidden"  // Asegura que no haya desbordamiento
       textDecoration={task.completed ? 'line-through' : 'none'}
-      textDecorationColor={task.completed ? 'blue.500' : 'transparent'}  // Color solo si está completada . 'transparent'cuando la tarea no está completada asegura que no se aplique ningún color al tachado.
     >
       {isEditing ? (
         <Box mt={30} display="flex" alignItems="center" width="100%">
