@@ -167,9 +167,9 @@ const App = () => {
             <TodoList tasks={filteredTasks} setTasks={setTasks} />
           </Box>
         </Box>
-        <Footer />
+ 
       </Stack>
-
+      <Footer />
     </ChakraProvider>
   );
 };
