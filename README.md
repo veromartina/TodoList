@@ -23,6 +23,8 @@ La aplicación está desarrollada exclusivamente con React.js (sin JavaScript pu
 🗑 Para eliminarla.
 Las tareas completadas deben mostrarse tachadas.
 Eliminar o marcar tareas como completadas se refleja en el estado de la aplicación y en localStorage.
+
+
 ![Vite + React - Google Chrome 6_12_2024 00_57_50](https://github.com/user-attachments/assets/737ea5c9-20d0-4908-82f3-9f743e5ec04a)
 ![Vite + React - Google Chrome 6_12_2024 01_00_02](https://github.com/user-attachments/assets/a3c18f0d-9c73-4169-8a04-858d34079bc7)
 ![Vite + React - Google Chrome 6_12_2024 01_01_41](https://github.com/user-attachments/assets/00323f78-1959-42c4-b3fd-133b4bcf2866)
